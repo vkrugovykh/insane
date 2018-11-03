@@ -1,22 +1,25 @@
 window.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    let page = document.querySelector('.page'),
-        pageChildren = page.children,
+    let moduleapp = document.querySelector('.moduleapp'),
+        moduleappChildren = moduleapp.children,
         currentScreen = 1;
 
-        page.addEventListener('click', (event) => {
+        moduleapp.addEventListener('click', (event) => {
         event.preventDefault();
 
         let target = event.target;
 
-        while (target != page) {
+        while (target != moduleapp) {
            
             if (target.classList.contains('next')) {
                 plusSlides(1);
                 return;
             } else if (target.tagName == 'A' && target.classList == '') {
                 firstSlide();
+                return;
+            } else if (target.classList.contains('prevmodule')) {
+                plusSlides(-1);
                 return;
             }
             target = target.parentNode;
@@ -43,12 +46,12 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function plusSlides(n) {
-        currentScreen = showScreen(currentScreen +=n, pageChildren, currentScreen);
+        currentScreen = showScreen(currentScreen +=n, moduleappChildren, currentScreen);
     }
 
     function firstSlide() {
         currentScreen = 1;
-        showScreen(1, pageChildren, currentScreen);
+        showScreen(1, moduleappChildren, currentScreen);
     }
 
 });
