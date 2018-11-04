@@ -976,6 +976,9 @@ a:active {
 }
 
 .modules__content-slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   width: 860px;
   margin-top: 120px;
@@ -1062,6 +1065,9 @@ a:active {
   cursor: pointer;
   -webkit-box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 296px;
+  flex: 0 0 296px;
 }
 
 .modules__content-slider .card__controls {

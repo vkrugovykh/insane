@@ -5,8 +5,11 @@ window.addEventListener('DOMContentLoaded', function() {
         pageChildren = page.children,
         showupContentSlider = document.querySelector('.showup__content-slider'),
         showupContentSliderItems = showupContentSlider.getElementsByTagName('a'),
+        modulesContentSlider = document.querySelector('.modules__content-slider'),
+        modulesContentSliderItems = modulesContentSlider.getElementsByTagName('a'),
         currentScreen = 1, // Первоначальный экран
         currentSlide = 1, // Первоначальный слайд на 1 экране
+        currentSlideThird = 1, // Первоначальный слайд на 3 экране
         officerNewItem = document.querySelector('.officernew .officer__card-item'),
         officerOldItems = document.querySelectorAll('.officerold .officer__card-item'),
         currentCard = 0; // количество отображаемых карточек на 2 экране
@@ -27,13 +30,23 @@ window.addEventListener('DOMContentLoaded', function() {
                 return;
             } else if (target.classList.contains('slick-next')) {
                 event.preventDefault();
-                currentSlide++;
-                currentSlide = horizontalSlide(showupContentSliderItems, currentSlide - 1);
+                if (target.parentNode.classList.contains('showup__content-slider')) {
+                    currentSlide++;
+                    currentSlide = horizontalSlide(showupContentSliderItems, currentSlide - 1);
+                } else if (target.parentNode.classList.contains('modules__info-btns')) {
+                    currentSlideThird++;
+                    currentSlideThird = horizontalSlide(modulesContentSliderItems, currentSlideThird - 1);
+                }
                 return;
             } else if (target.classList.contains('slick-prev')) {
                 event.preventDefault();
-                currentSlide--;
-                currentSlide = horizontalSlide(showupContentSliderItems, currentSlide - 1);
+                if (target.parentNode.classList.contains('showup__content-slider')) {
+                    currentSlide--;
+                    currentSlide = horizontalSlide(showupContentSliderItems, currentSlide - 1);
+                } else if (target.parentNode.classList.contains('modules__info-btns')) {
+                    currentSlideThird--;
+                    currentSlideThird = horizontalSlide(modulesContentSliderItems, currentSlideThird - 1);
+                }
                 return;
             } else if (target.classList.contains('plus')) {
                 if (target.parentNode.classList.contains('showup__content-explore')) {
@@ -94,6 +107,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
     horizontalSlide(showupContentSliderItems, currentSlide - 1);//Вызываем слайдер на 1 экране
+
+    let slideInterval = setTimeout(function tick() { //Autoplay для слайдера на 3 экране
+        if (currentScreen == 3) {
+            currentSlideThird++;
+            horizontalSlide(modulesContentSliderItems, currentSlideThird - 1);//Вызываем слайдер на 3 экране
+        }
+        slideInterval = setTimeout(tick, 4000);
+    }, 4000);
 
     function horizontalSlide(items, n) { //Слайдер на 1 экране
 
