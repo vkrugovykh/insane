@@ -51,6 +51,7 @@
         bottom: 0
         left: 84px
         padding: 40px 0 40px 63px
+        overflow: hidden
         &-title
             color: #ffffff
             font-size: 28px
@@ -59,6 +60,7 @@
             letter-spacing: -0.56px
             margin-right: 43px
         &-slider
+            display: flex
             position: relative
             width: 860px
             .slick-prev
@@ -78,6 +80,8 @@
                     top: 50%
                     left: 50%
                     transform: translateX(-65%) translateY(-50%)
+                &:hover
+                    border: 2px solid rgba(256,256,256,1)
             .slick-next
                 position: absolute
                 bottom: 0px
@@ -95,6 +99,8 @@
                     top: 50%
                     left: 50%
                     transform: translateX(-45%) translateY(-50%)
+                &:hover
+                    border: 2px solid rgba(256,256,256,1)
             .card
                 display: block
                 width: 307px
@@ -107,6 +113,8 @@
                 margin-right: 24px
                 cursor: pointer
                 box-shadow: 0 0px 20px rgba(0,0,0,.5)
+                flex: 0 0 33.333333%
+                //width: 33.333333%
                 // &:hover
                 //     padding-top: 32px
                 //     .card
@@ -160,6 +168,13 @@
                 &__3
                     background: url('../img/slide_3_m.jpg') center center no-repeat
                     background-size: cover
+                &-active
+                    .card
+                        &__controls
+                            &-arrow
+                                opacity: 1
+                        &__title
+                            opacity: 1
             .slick-current .card
                 &__controls
                     &-arrow
