@@ -586,10 +586,6 @@ a:active {
   opacity: 1;
 }
 
-.showup__content-slider .card-active .card__description {
-  opacity: 1;
-}
-
 .showup__content-slider .slick-current .card__controls-arrow {
   opacity: 1;
 }
@@ -747,6 +743,9 @@ a:active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .difference__info-cards .officer__card-item .card__counter {

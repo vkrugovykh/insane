@@ -5,10 +5,13 @@ window.addEventListener('DOMContentLoaded', function() {
         pageChildren = page.children,
         showupContentSlider = document.querySelector('.showup__content-slider'),
         showupContentSliderItems = showupContentSlider.getElementsByTagName('a'),
-        currentScreen = 1,
-        currentSlide = 1;
+        currentScreen = 1, // Первоначальный экран
+        currentSlide = 1, // Первоначальный слайд на 1 экране
+        officerNewItem = document.querySelector('.officernew .officer__card-item'),
+        officerOldItems = document.querySelectorAll('.officerold .officer__card-item'),
+        currentCard = 0; // количество отображаемых карточек на 2 экране
 
-        page.addEventListener('click', (event) => {
+        page.addEventListener('click', (event) => { //Обработка кликов на странице
 
         let target = event.target;
 
@@ -35,6 +38,9 @@ window.addEventListener('DOMContentLoaded', function() {
             } else if (target.classList.contains('plus')) {
                 if (target.parentNode.classList.contains('showup__content-explore')) {
                     location.href = 'modules.html?module=1';
+                } else if (target.parentNode.classList.contains('card__click')) {
+                    currentCard++;
+                    educationSteps(officerOldItems, officerNewItem, currentCard);
                 }
             }
             target = target.parentNode;
@@ -42,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    function showScreen(slidePos, slide, n) {
+    function showScreen(slidePos, slide, n) { //Отображение экранов
         
         if (slidePos > slide.length) {
             n = 1;
@@ -60,15 +66,16 @@ window.addEventListener('DOMContentLoaded', function() {
         return n;
     }
 
-    function plusSlides(n) {
+    function plusSlides(n) { //Плюс экран
         currentScreen = showScreen(currentScreen += n, pageChildren, currentScreen);
     }
 
-    function firstSlide() {
+    function firstSlide() { //Первый экран
         currentScreen = 1;
         showScreen(1, pageChildren, currentScreen);
     }
 
+    // Навигация слайдера
     showupContentSlider.innerHTML += `
         <button type="button" class="slick-prev">
             <div class="play__content">
@@ -86,9 +93,9 @@ window.addEventListener('DOMContentLoaded', function() {
         </button>`;
 
 
-    horizontalSlide(showupContentSliderItems, currentSlide - 1);
+    horizontalSlide(showupContentSliderItems, currentSlide - 1);//Вызываем слайдер на 1 экране
 
-    function horizontalSlide(items, n) {
+    function horizontalSlide(items, n) { //Слайдер на 1 экране
 
         if (n >= items.length) {
             n = 0;
@@ -114,6 +121,36 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         };
         return ++n;
+    };
+
+    educationSteps(officerOldItems, officerNewItem, currentCard); //Заполняем карточки на 2 экране
+
+    function educationSteps(items, btn, pos) { //Отображение карточек на 2 экране и навигации
+
+        if (pos >= items.length) {
+            pos = items.length;
+        }
+
+        for (let i = 0; i < items.length; i++) {
+            
+            if ( i < pos) {
+                items[i].style.display = 'flex';
+            } else {
+                items[i].style.display = 'none';
+            }
+
+        }
+
+        if (pos == items.length) {
+            btn.style.opacity = '0';
+            btn.style.transition = 'opacity 0.5s linear';
+            setTimeout(() => {
+                btn.style.display = 'none';
+            }, 600);
+        } else {
+            btn.style.transform = `translateY(${pos * 100}px)`;
+        }
+
     };
 
 });
