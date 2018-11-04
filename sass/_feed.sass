@@ -15,6 +15,8 @@
         height: 40%
         z-index: -1
     &__slider
+        display: flex
+        align-items: flex-start
         width: 100%
         height: 430px
         margin-left: 148px
@@ -23,8 +25,8 @@
         .slick-prev
             z-index: 12
             position: absolute
-            bottom: 0
-            left: 587px
+            bottom: 23px
+            left: 737px
             width: 43px
             height: 43px
             border: 2px solid #EAEAEA
@@ -39,11 +41,13 @@
                 top: 50%
                 left: 50%
                 transform: translateX(-65%) translateY(-50%)
+            &:hover
+                border: 2px solid #ffffff
         .slick-next
             z-index: 12
             position: absolute
-            bottom: 0
-            left: 647px
+            bottom: 23px
+            left: 797px
             width: 43px
             height: 43px
             border: 2px solid #EAEAEA
@@ -57,6 +61,8 @@
                 top: 50%
                 left: 50%
                 transform: translateX(-45%) translateY(-50%)
+            &:hover
+                border: 2px solid #ffffff
     &__item
         width: 241px
         min-height: 341px
@@ -65,6 +71,7 @@
         padding: 34px 40px 66px 40px
         margin-right: 32px
         transition: 0.5s all
+        flex: 0 0 241px
         &-info
             display: block
             .photo
@@ -148,6 +155,7 @@
             background-color: #fff
             padding: 32px 40px 50px 40px
             transition: 0.5s all
+            flex: 0 0 555px
             hr
                 display: block
                 margin-top: 20px

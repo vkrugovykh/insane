@@ -331,6 +331,17 @@ a:active {
   cursor: pointer;
 }
 
+.statusMessage {
+  padding: 10px;
+  margin-top: 10px;
+  width: 50%;
+  border: 2px solid #9EC73D;
+  border-radius: 4px;
+  text-align: center;
+  background-color: rgba(158, 199, 61, 0.8);
+  color: #ffffff;
+}
+
 .showup {
   position: relative;
   height: 100vh;
@@ -1389,6 +1400,12 @@ a:active {
 }
 
 .feed__slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   width: 100%;
   height: 430px;
   margin-left: 148px;
@@ -1399,8 +1416,8 @@ a:active {
 .feed__slider .slick-prev {
   z-index: 12;
   position: absolute;
-  bottom: 0;
-  left: 587px;
+  bottom: 23px;
+  left: 737px;
   width: 43px;
   height: 43px;
   border: 2px solid #EAEAEA;
@@ -1421,11 +1438,15 @@ a:active {
   transform: translateX(-65%) translateY(-50%);
 }
 
+.feed__slider .slick-prev:hover {
+  border: 2px solid #ffffff;
+}
+
 .feed__slider .slick-next {
   z-index: 12;
   position: absolute;
-  bottom: 0;
-  left: 647px;
+  bottom: 23px;
+  left: 797px;
   width: 43px;
   height: 43px;
   border: 2px solid #EAEAEA;
@@ -1445,6 +1466,10 @@ a:active {
   transform: translateX(-45%) translateY(-50%);
 }
 
+.feed__slider .slick-next:hover {
+  border: 2px solid #ffffff;
+}
+
 .feed__item {
   width: 241px;
   min-height: 341px;
@@ -1455,6 +1480,9 @@ a:active {
   -webkit-transition: 0.5s all;
   -o-transition: 0.5s all;
   transition: 0.5s all;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 241px;
+  flex: 0 0 241px;
 }
 
 .feed__item-info {
@@ -1577,6 +1605,9 @@ a:active {
   -webkit-transition: 0.5s all;
   -o-transition: 0.5s all;
   transition: 0.5s all;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 555px;
+  flex: 0 0 555px;
 }
 
 .feed__item-active hr {
