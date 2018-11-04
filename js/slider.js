@@ -9,28 +9,33 @@ window.addEventListener('DOMContentLoaded', function() {
         currentSlide = 1;
 
         page.addEventListener('click', (event) => {
-        event.preventDefault();
 
         let target = event.target;
 
         while (target != page) {
            
             if (target.classList.contains('next')) {
+                event.preventDefault();
                 plusSlides(1);
                 return;
             } else if (target.tagName == 'A' && target.classList == '') {
+                event.preventDefault();
                 firstSlide();
                 return;
             } else if (target.classList.contains('slick-next')) {
+                event.preventDefault();
                 currentSlide++;
                 currentSlide = horizontalSlide(showupContentSliderItems, currentSlide - 1);
-                console.log(currentSlide);
                 return;
             } else if (target.classList.contains('slick-prev')) {
+                event.preventDefault();
                 currentSlide--;
                 currentSlide = horizontalSlide(showupContentSliderItems, currentSlide - 1);
-                console.log(currentSlide);
                 return;
+            } else if (target.classList.contains('plus')) {
+                if (target.parentNode.classList.contains('showup__content-explore')) {
+                    location.href = 'modules.html?module=1';
+                }
             }
             target = target.parentNode;
         };
@@ -96,12 +101,15 @@ window.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < items.length; i++) {
             if (i < n) {
                 items[i].style.order = items.length - n + i;
+                items[i].setAttribute('href', `modules.html?module=${i + 1}`);
                 items[i].classList.remove('card-active');
             } else if (i == n) {
                 items[i].style.order = i - n;
+                items[i].setAttribute('href', `modules.html?module=${i + 1}`);
                 items[i].classList.add('card-active');
             } else if (i > n) {
                 items[i].style.order = i - n;
+                items[i].setAttribute('href', `modules.html?module=${i + 1}`);
                 items[i].classList.remove('card-active');
             }
         };

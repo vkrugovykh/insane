@@ -5,6 +5,12 @@ window.addEventListener('DOMContentLoaded', function() {
         moduleappChildren = moduleapp.children,
         currentScreen = 1;
 
+        if (location.search.substr(location.search.indexOf('=') + 1)) {
+            firstSlide(location.search.substr(location.search.indexOf('=') + 1));
+        } else {
+            firstSlide(currentScreen);
+        };
+        
         moduleapp.addEventListener('click', (event) => {
         event.preventDefault();
 
@@ -16,7 +22,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 plusSlides(1);
                 return;
             } else if (target.tagName == 'A' && target.classList == '') {
-                firstSlide();
+                firstSlide(1);
                 return;
             } else if (target.classList.contains('prevmodule')) {
                 plusSlides(-1);
@@ -49,9 +55,9 @@ window.addEventListener('DOMContentLoaded', function() {
         currentScreen = showScreen(currentScreen +=n, moduleappChildren, currentScreen);
     }
 
-    function firstSlide() {
-        currentScreen = 1;
-        showScreen(1, moduleappChildren, currentScreen);
+    function firstSlide(n) {
+        currentScreen = n;
+        showScreen(n, moduleappChildren, currentScreen);
     }
 
 });
