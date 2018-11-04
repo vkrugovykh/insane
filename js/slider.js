@@ -12,7 +12,10 @@ window.addEventListener('DOMContentLoaded', function() {
         currentSlideThird = 1, // Первоначальный слайд на 3 экране
         officerNewItem = document.querySelector('.officernew .officer__card-item'),
         officerOldItems = document.querySelectorAll('.officerold .officer__card-item'),
-        currentCard = 0; // количество отображаемых карточек на 2 экране
+        currentCard = 0, // количество отображаемых карточек на 2 экране
+        modulesInfoHanson = document.querySelector('.modules__info .hanson');
+
+        modulesInfoHanson.style.display = 'none';
 
         page.addEventListener('click', (event) => { //Обработка кликов на странице
 
@@ -23,6 +26,11 @@ window.addEventListener('DOMContentLoaded', function() {
             if (target.classList.contains('next')) {
                 event.preventDefault();
                 plusSlides(1);
+                if (currentScreen == 3) {
+                    setTimeout(function() { modulesInfoHanson.style.display = 'block' }, 3000);
+                } else if (currentScreen != 3) {
+                    modulesInfoHanson.style.display = 'none'
+                }
                 return;
             } else if (target.tagName == 'A' && target.classList == '') {
                 event.preventDefault();
