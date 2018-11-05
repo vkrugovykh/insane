@@ -115,6 +115,15 @@
             line-height: 24px
             font-size: 14px
             letter-spacing: -0.28px
+            &_accordion
+                margin-top: 0
+                height: 0
+                font-weight: normal
+                line-height: 24px
+                font-size: 14px
+                letter-spacing: -0.28px
+                overflow: hidden
+                transition: 0.3s
         &-show 
             display: flex 
             align-items: center
@@ -168,6 +177,7 @@
                 display: flex 
                 justify-content: center
                 height: 48px
+                cursor: pointer
                 svg 
                     transform: translateY(2px)
                 &__text 

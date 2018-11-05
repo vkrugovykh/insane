@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     close.addEventListener('click', function() {
-        frame.setAttribute('src', 'none');
+        frame.setAttribute('src', '');
         modalOff();
     });
 

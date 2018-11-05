@@ -3,7 +3,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let moduleapp = document.querySelector('.moduleapp'),
         moduleappChildren = moduleapp.children,
-        currentScreen = 1;
+        currentScreen = 1,
+        accordionElem = document.createElement('div');
+
+    accordionElem.classList.add('module__info-descr_accordion');
+    accordionElem.innerText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. \
+        Voluptate sunt eaque, illo, magnam praesentium, excepturi possimus mollitia \
+        voluptatem eum magni, fugiat ut aperiam.';
+    accordionElem.style.height = '0px';
+    accordionElem.style.marginTop = '0px';
 
     if (location.search.substr(location.search.indexOf('=') + 1)) {
         firstSlide(location.search.substr(location.search.indexOf('=') + 1));
@@ -36,6 +44,21 @@ window.addEventListener('DOMContentLoaded', function() {
                     }
                     modalOn();
                 }
+            } else if (target.classList.contains('plus')) {
+                if (target.parentNode.nextSibling.classList && target.parentNode.nextSibling.style.height == '0px') {
+                    target.parentNode.nextSibling.style.height = '48px';
+                    target.parentNode.nextSibling.style.marginTop = '17px';
+                } else if (target.parentNode.nextSibling.classList && target.parentNode.nextSibling.style.heght != '0px') {
+                    target.parentNode.nextSibling.style.height = '0px';
+                    target.parentNode.nextSibling.style.marginTop = '0px';
+                } else {
+                    target.parentNode.parentNode.insertBefore(accordionElem, target.parentNode.nextSibling);
+                    target.parentNode.nextSibling.style.height = '48px';
+                    target.parentNode.nextSibling.style.marginTop = '17px';
+                }
+                
+            } else if (target.classList.contains('download')) {
+                window.open('files/file.pdf');
             }
             target = target.parentNode;
         };
@@ -65,7 +88,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function firstSlide(n) {
-        currentScreen = n;
+        currentScreen = +n;
         showScreen(n, moduleappChildren, currentScreen);
     }
 
@@ -74,7 +97,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let overlay = document.querySelector('.overlay'),
         close = document.querySelector('.close'),
-        moduleVideo = document.querySelectorAll('.module__video-item .play'),
         videoNav = `<div class="play__circle">
                         <svg viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 8L0 16V0L14 8Z" fill="#6D53AF"/>

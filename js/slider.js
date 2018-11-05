@@ -13,8 +13,7 @@ window.addEventListener('DOMContentLoaded', function() {
         currentSlide = 1, // Первоначальный слайд на 1 экране
         currentSlideThird = 1, // Первоначальный слайд на 3 экране
         currentSlideFifth = 1, // Первоначальный слайд на 5 экране
-        officerNewItem = document.querySelector('.officernew .officer__card-item'),
-        officerOldItems = document.querySelectorAll('.officerold .officer__card-item'),
+        officerNewItem = document.querySelectorAll('.officernew .officer__card-item'),
         currentCard = 0, // количество отображаемых карточек на 2 экране
         modulesInfoHanson = document.querySelector('.modules__info .hanson'),
         slidersButton = `
@@ -85,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     location.href = 'modules.html?module=1';
                 } else if (target.parentNode.classList.contains('card__click')) {
                     currentCard++;
-                    educationSteps(officerOldItems, officerNewItem, currentCard);
+                    educationSteps(officerNewItem, officerNewItem[3], currentCard);
                 }
             }
             target = target.parentNode;
@@ -171,8 +170,6 @@ window.addEventListener('DOMContentLoaded', function() {
         return ++n;
     };
 
-    educationSteps(officerOldItems, officerNewItem, currentCard); //Заполняем карточки на 2 экране
-
     function educationSteps(items, btn, pos) { //Отображение карточек на 2 экране и навигации
 
         if (pos >= items.length) {
@@ -183,20 +180,25 @@ window.addEventListener('DOMContentLoaded', function() {
             
             if ( i < pos) {
                 items[i].style.display = 'flex';
+                setTimeout(() => {
+                    items[i].style.opacity = '1';
+                    items[i].style.transition = 'opacity 0.5s linear';
+                }, 50);
             } else {
                 items[i].style.display = 'none';
             }
 
         }
 
-        if (pos == items.length) {
+        if (pos == items.length - 1) {
             btn.style.opacity = '0';
             btn.style.transition = 'opacity 0.5s linear';
             setTimeout(() => {
                 btn.style.display = 'none';
             }, 600);
         } else {
-            btn.style.transform = `translateY(${pos * 100}px)`;
+            btn.style.display = 'flex';
+            //btn.style.transform = `translateY(${pos * 100}px)`;
         }
 
     };

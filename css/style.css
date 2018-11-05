@@ -2092,6 +2092,19 @@ a:active {
   letter-spacing: -0.28px;
 }
 
+.module__info-descr_accordion {
+  margin-top: 0;
+  height: 0;
+  font-weight: normal;
+  line-height: 24px;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
 .module__info-show {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2184,6 +2197,7 @@ a:active {
   -ms-flex-pack: center;
   justify-content: center;
   height: 48px;
+  cursor: pointer;
 }
 
 .module__info-book .download svg {
