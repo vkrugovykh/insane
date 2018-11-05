@@ -150,15 +150,21 @@ window.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < items.length; i++) {
             if (i < n) {
                 items[i].style.order = items.length - n + i;
-                items[i].setAttribute('href', `modules.html?module=${i + 1}`);
+                if (items[i].tagName == 'A') {
+                    items[i].setAttribute('href', `modules.html?module=${i + 1}`);
+                }
                 items[i].classList.remove(active);
             } else if (i == n) {
                 items[i].style.order = i - n;
-                items[i].setAttribute('href', `modules.html?module=${i + 1}`);
+                if (items[i].tagName == 'A') {
+                    items[i].setAttribute('href', `modules.html?module=${i + 1}`);
+                }
                 items[i].classList.add(active);
             } else if (i > n) {
                 items[i].style.order = i - n;
-                items[i].setAttribute('href', `modules.html?module=${i + 1}`);
+                if (items[i].tagName == 'A') {
+                    items[i].setAttribute('href', `modules.html?module=${i + 1}`);
+                }
                 items[i].classList.remove(active);
             }
         };
