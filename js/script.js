@@ -1,14 +1,14 @@
-import globalJS from './parts/globalJS.js';
-import indexPage from './parts/indexPage.js';
-import modulesPage from './parts/modulesPage.js';
-import functions from './parts/functions.js';
-
 window.addEventListener('DOMContentLoaded', function() {
     'use strict';
+    let showScreenModule = require('./parts/showScreenModule.js');
+    let modal = require('./parts/modal.js');
+    let sliders = require('./parts/sliders.js');
+    let inputAndSend = require('./parts/inputAndSend.js');
+    let cardsAndAccordion = require('./parts/cardsAndAccordion.js');
 
-    globalJS();
-    indexPage();
-    modulesPage();
-    functions();
-    
+    showScreenModule();
+    modal();
+    sliders();
+    inputAndSend();
+    cardsAndAccordion();
 });
