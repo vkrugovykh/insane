@@ -72,7 +72,7 @@ function showScreenModule() {
                     plusSlides(-1);
                     return;
                 } else if (target.classList.contains('download')) {
-                    window.open('files/file.pdf');
+                    downloadFile('files/file.pdf');
                 }
                 target = target.parentNode;
             };
@@ -83,6 +83,13 @@ function showScreenModule() {
 
 
 //=== ФУНКЦИИ ===//
+    function downloadFile(fileUrl) {
+        let link = document.createElement('a');
+        link.href = fileUrl;
+        link.setAttribute('download','');
+        link.click();
+    };
+
     function showScreen(slidePos, slide, n) { //Отображение экранов
             
         if (slidePos > slide.length) {
@@ -112,5 +119,4 @@ function showScreenModule() {
 
 }
 
-//export default showScreenModule;
 module.exports = showScreenModule;

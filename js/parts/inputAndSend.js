@@ -94,7 +94,7 @@ function inputAndSend() {
 
         let request = new XMLHttpRequest();
         request.open('POST', 'server.php');
-        //request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
         let formData = new FormData(ajaxSendForm);
@@ -105,7 +105,6 @@ function inputAndSend() {
         });
         let json = JSON.stringify(obj);
 
-        //request.send(formData);
         request.send(json);
 
         request.addEventListener('readystatechange', function() {
@@ -124,5 +123,4 @@ function inputAndSend() {
     }
 }
 
-// export default inputAndSend;
 module.exports = inputAndSend;

@@ -109,5 +109,4 @@ function cardsAndAccordion() {
 
 }
 
-// export default cards;
 module.exports = cardsAndAccordion;

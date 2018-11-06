@@ -130,5 +130,4 @@ function sliders() {
 
 }
 
-//export default sliders;
 module.exports = sliders;
