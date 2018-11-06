@@ -33,9 +33,15 @@ function modal() {
 
 //=== ГЛАВНАЯ СТРАНИЦА ===//
     if (document.title === 'Loan') {
-        var showupVideo = document.querySelector('.showup__video .play');
+        var showupVideo = document.querySelector('.showup__video .play'),
+            scheduleVideo = document.querySelector('.schedule__info .colored .video .play');
 
         showupVideo.addEventListener('click', function() {
+            frame.setAttribute('src', this.getAttribute('data-url'));
+            modalOn();
+        });
+
+        scheduleVideo.addEventListener('click', function() {
             frame.setAttribute('src', this.getAttribute('data-url'));
             modalOn();
         });

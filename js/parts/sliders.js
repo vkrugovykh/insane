@@ -15,6 +15,7 @@ function sliders() {
             currentSlideFifth = 1, // Первоначальный слайд на 5 экране
             feedSlider = document.querySelector('.feed__slider'), 
             feedItem = feedSlider.getElementsByClassName('feed__item'),
+            autoplay = true, //автопроигрывание слайдера на 1 странице
             slidersButton = `
                 <button type="button" class="slick-prev">
                     <div class="play__content">
@@ -40,8 +41,10 @@ function sliders() {
 
         let slideInterval = setTimeout(function tick() { //Autoplay для слайдера на 3 экране
             if (document.querySelector('.modules').style.display == 'block') {
-                currentSlideThird++;
-                horizontalSlide(modulesContentSliderItems, currentSlideThird - 1, 'card-active');//Вызываем слайдер на 3 экране
+                if (autoplay) {
+                    currentSlideThird++;
+                    horizontalSlide(modulesContentSliderItems, currentSlideThird - 1, 'card-active');//Вызываем слайдер на 3 экране
+                }
             }
             slideInterval = setTimeout(tick, 4000);
         }, 4000);
@@ -81,6 +84,50 @@ function sliders() {
                         currentSlideFifth--;
                         currentSlideFifth = horizontalSlide(feedItem, currentSlideFifth - 1, 'feed__item-active');
                     }
+                    return;
+                }
+                target = target.parentNode;
+            };
+    
+        });
+
+
+        page.addEventListener('mouseover', (event) => { 
+
+            let target = event.target;
+    
+            while (target != page) {
+               
+                if (target.classList.contains('slick-next')) {
+                    autoplay = false;
+                    return;
+                } else if (target.classList.contains('slick-prev')) {
+                    autoplay = false;
+                    return;
+                } else if (target.classList.contains('modules__content-slider')) {
+                    autoplay = false;
+                    return;
+                }
+                target = target.parentNode;
+            };
+    
+        });
+
+
+        page.addEventListener('mouseout', (event) => { 
+
+            let target = event.target;
+    
+            while (target != page) {
+               
+                if (target.classList.contains('slick-next')) {
+                    autoplay = true;
+                    return;
+                } else if (target.classList.contains('slick-prev')) {
+                    autoplay = true;
+                    return;
+                } else if (target.classList.contains('modules__content-slider')) {
+                    autoplay = true;
                     return;
                 }
                 target = target.parentNode;

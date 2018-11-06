@@ -13,12 +13,16 @@ function inputAndSend() {
             inputDate = document.querySelectorAll('input[type="datetime"]'),
             inputTel = document.querySelectorAll('input[type="tel"]'),
             x = '_', //Заменяемый символ
-            mask = `+1 (${x}${x}${x}) ${x}${x}${x} ${x}${x}${x}${x}`; //Маска поля;
+            mask = `+1 (${x}${x}${x}) ${x}${x}${x}-${x}${x}${x}${x}`; //Маска поля;
 
         inputTel.forEach(function(event) { // Проверка ввода
             
             event.addEventListener('keypress', (event) => {
                 let target = event.target;
+                target.selectionStart = target.value.indexOf(x);
+                if (target.value.length >= mask.length && !target.value.match(x)) {
+                    event.preventDefault();
+                }
                 if (target.value.length < 1 || target.selectionStart == 0) {
                     testInput(/\+/);
                 } else if (target.value.length > 0) {
@@ -32,7 +36,7 @@ function inputAndSend() {
                     target.value = mask;//Записываем маску в значение
                 }
                 target.selectionStart = mask.indexOf(x);//Устанавливаем курсор к первому заменяемогу символу
-                target.setAttribute('maxlength', mask.length);//Максимальное количество символов не больше количества символов маски
+                //target.setAttribute('maxlength', mask.length);//Максимальное количество символов не больше количества символов маски
             });
     
             event.addEventListener('blur', (event) => { //Если поле заполнено не по маске или не до конца - обнуляем
